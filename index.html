@@ -1893,7 +1893,7 @@ function renderTour(){
   var hole = {x:Math.max(4,r.left-pad), y:Math.max(4,r.top-pad), w:Math.min(vw-8,r.width+pad*2), h:Math.min(vh-8, r.height+pad*2)};
   if(W.tour===1) hole.h = Math.min(hole.h, 430);
   var cw = 320, cx, cy;
-  if(W.tour===0){ cx = hole.x+hole.w+16; cy = hole.y; } else if(W.tour===1){ cx = hole.x+hole.w/2-cw/2; cy = hole.y+hole.h+14; } else { cx = hole.x-cw-16; cy = hole.y+80; }
+  if(W.tour===0){ cx = hole.x+hole.w+16; cy = hole.y; } else if(W.tour===1){ cx = hole.x+hole.w/2-cw/2; cy = hole.y+hole.h+14; } else { cx = hole.x-cw-16; if(cx < 16) cx = hole.x+24; cy = hole.y+80; }
   cx = Math.max(12, Math.min(vw-cw-12, cx)); cy = Math.max(12, Math.min(vh-240, cy));
   var last = W.tour===TOURSTEPS().length-1;
   el.innerHTML = '<div class="tour-hole" style="left:'+hole.x+'px;top:'+hole.y+'px;width:'+hole.w+'px;height:'+hole.h+'px"></div>'+
@@ -2087,7 +2087,7 @@ async function act(name, el){
       await sleep(300); if(id0===runId){ inp.value = ""; wsAsk(qq, qk); } break;
     case "plan": PLAN = el.getAttribute("data-plan"); try{ localStorage.setItem("opc-plan", PLAN); }catch(e){} markPlan(); if(S.view==="ws"){ if(PLAN==="B"||PLAN==="B2") S.ws.page = "overview"; else if(S.ws.conv) S.ws.page = "topic"; renderWS(); } toast(t("plan."+PLAN)); break;
     case "ws-tour": S.ws.tour = 0; renderTour(); break;
-    case "tour-next": S.ws.tour++; if(S.ws.tour>=TOUR.length) S.ws.tour = -1; renderTour(); break;
+    case "tour-next": S.ws.tour++; if(S.ws.tour>=TOURSTEPS().length) S.ws.tour = -1; renderTour(); break;
     case "tour-skip": S.ws.tour = -1; renderTour(); break;
     case "rp-cta": if(S.user) enterApp(); else { S.pending = "report"; openAuth("report"); } break;
     case "account": if(!S.user) openAuth("signup"); else toast(t("toast.signed",{email:S.user.email})); break;
