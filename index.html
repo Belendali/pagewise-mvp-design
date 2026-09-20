@@ -784,6 +784,20 @@ body.inner .ws-tile .num span{font-family:var(--mono);font-size:16px}
 body.inner .card,body.inner .ws-box,body.inner .ws-recent,body.inner .cc,body.inner .auth-card{border-radius:6px}
 body.inner .auth-card{background:#141414;border-color:#2A2A28;box-shadow:0 40px 90px -40px #000}
 body.inner .ws-side,body.inner .ws-chat{background:#111111}
+/* dark scrollbars everywhere inside the app shell */
+body.inner *{scrollbar-width:thin;scrollbar-color:#2E2E2B transparent}
+body.inner ::-webkit-scrollbar{width:11px;height:11px;background:transparent}
+body.inner ::-webkit-scrollbar-track{background:transparent}
+body.inner ::-webkit-scrollbar-thumb{background:#2E2E2B;border-radius:8px;border:3px solid transparent;background-clip:content-box}
+body.inner ::-webkit-scrollbar-thumb:hover{background:#3C3C38;background-clip:content-box}
+body.inner ::-webkit-scrollbar-corner{background:transparent}
+/* B4: give each of the three zones its own surface */
+body.inner.plan-b4 .ws-main{background:#0B0B0A}
+body.inner.plan-b4 .ws-side{background:#121110;border-left:1px solid #201F1C}
+body.inner.plan-b4 .ws-chat{background:#1A1815;border-left:1px solid #2B2A23}
+body.inner.plan-b4 .ws-chat-h,body.inner.plan-b4 .ws-chat-f{border-color:#26251F}
+body.inner.plan-b4 .cc,body.inner.plan-b4 .ws-box{background:#100F0D;border-color:#2A2924}
+body.plan-b4 .ws-top{background:linear-gradient(to bottom,#0B0B0A 70%,transparent)}
 body.inner .ws-item.on{background:#1B1B1A;box-shadow:inset 2px 0 0 var(--accent)}
 body.inner .soon{border-color:#3A3833;color:#86817A}
 body.inner .ws-add-block{border-radius:4px}
