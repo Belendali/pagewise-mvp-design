@@ -686,6 +686,9 @@ body.plan-b3 .cv-switch{min-width:0;max-width:100%}
 .steps-list li.on h3{color:var(--ink)}
 .steps-list li.on .step-n{background:var(--accent);color:#1A1509;border-color:transparent}
 .steps-list li:not(.on) h3,.steps-list li:not(.on) p{opacity:.6}
+.ws-done{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:6px;border:1px dashed var(--line-2);background:var(--glass-sunken);margin-top:4px}
+.ws-done b{font-weight:600;font-size:14px;color:var(--ink)}
+.ws-done span{font-size:13px;color:var(--ink-3)}
 .pager{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 0 2px;font-size:12px;color:var(--ink-3)}
 .pager .pg{width:28px;height:28px;border-radius:8px;border:1px solid var(--glass-line);color:var(--ink-2);font-size:15px;line-height:1}
 .pager .pg:hover:not([disabled]){color:var(--ink);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
@@ -1216,6 +1219,7 @@ body.ws-mode .plan-switch{display:inline-flex;padding:3px;border-radius:999px;ba
     <button type="button" data-jump="confirm"><span>C03</span><b data-i18n="proto.c03"></b></button>
     <button type="button" data-jump="scope"><span>C04</span><b data-i18n="proto.c04"></b></button>
     <button type="button" data-jump="auth"><span>··</span><b data-i18n="proto.auth"></b></button>
+    <button type="button" data-jump="error"><span>C02</span><b data-i18n="proto.error"></b></button>
     <button type="button" data-jump="c05"><span>C05</span><b data-i18n="proto.c05"></b></button>
     <button type="button" data-jump="tour"><span>··</span><b data-i18n="proto.tour"></b></button>
     <button type="button" data-jump="c06"><span>C06</span><b data-i18n="proto.c06"></b></button>
@@ -1323,7 +1327,10 @@ en:{
  "dr.meta":"Question 4 of 10 · ChatGPT (US, English)","dr.sources":"Websites ChatGPT linked to","dr.absent":"This answer doesn't mention Answer.AI or link to your website.","dr.present":"This answer mentions Answer.AI and links to your meetings page.",
  "dr.pagestate.proposed":"Suggested · not on your site yet","dr.pagestate.live":"Live on your page",
  "dr.pos":"When ChatGPT mentions you, you're usually listed 3rd of 8","dr.q":"Question","dr.m":"Mentions you","dr.c":"Links to you","dr.brands":"Competitors we compare you with","dr.edit":"Want different questions or competitors? Just tell me in the chat.",
- "toast.sites":"Prototype: one website only","toast.sample":"Prototype: {d} is not crawled here — this demo always checks the sample site answerai.pro","toast.newchat":"Prototype: new chats start here","toast.open":"Prototype: this opens your page in a new tab","toast.copied":"Copied",
+ "toast.sites":"Prototype: one website only","w.c.reopen":"Actually, let's change it","w.toast.reopened":"Back on your list",
+ "w.done.h":"Everything on this list is handled.","w.done.manual":"Run another check when you want to see if it moved.","w.done.auto":"Auto-check is on — we'll tell you when something changes.",
+ "e.kicker":"We couldn't read this site","e.h1":"We can't open that address","e.sub":"We tried {d} and couldn't get a page back. A few things that usually cause it:",
+ "e.r1":"A typo in the address, or the site is behind a login","e.r2":"The site blocks automated readers in robots.txt","e.r3":"The site was temporarily down","e.retry":"Try another address","e.sample":"See a sample check instead","proto.error":"Site can't be read","toast.sample":"Prototype: {d} is not crawled here — this demo always checks the sample site answerai.pro","toast.newchat":"Prototype: new chats start here","toast.open":"Prototype: this opens your page in a new tab","toast.copied":"Copied",
  "proto.btn":"Prototype","proto.h":"Jump to a step","proto.landing":"Homepage","proto.checking":"Checking the site","proto.finding":"First fix","proto.draft":"After “Use this fix”","proto.scheduled":"Waiting to check again","proto.return":"Coming back · results"
 },
 zh:{
@@ -1407,7 +1414,10 @@ zh:{
  "dr.meta":"第 4 / 10 个问题 · ChatGPT（美国，英语）","dr.sources":"ChatGPT 链接到的网站","dr.absent":"这个回答没有提到 Answer.AI，也没有链接到你的网站。","dr.present":"这个回答提到了 Answer.AI，并链接到你的会议页面。",
  "dr.pagestate.proposed":"建议内容 · 还没放到网站上","dr.pagestate.live":"已在你的页面上",
  "dr.pos":"ChatGPT 提到你时，你通常排在 8 个品牌里的第 3 位","dr.q":"问题","dr.m":"提到你","dr.c":"链接到你","dr.brands":"和你一起比较的竞品","dr.edit":"想换问题或竞品？直接在对话里告诉我。",
- "toast.sites":"原型：只有一个网站","toast.sample":"原型演示：不会真的去抓 {d}，这里始终用示例网站 answerai.pro 的数据","toast.newchat":"原型：新对话从这里开始","toast.open":"原型：这里会在新标签页打开你的页面","toast.copied":"已复制",
+ "toast.sites":"原型：只有一个网站","w.c.reopen":"还是改一下","w.toast.reopened":"又回到你的列表了",
+ "w.done.h":"这些都处理完了。","w.done.manual":"想看有没有变化，再查一次就行。","w.done.auto":"自动检查已打开 — 有变化我会告诉你。",
+ "e.kicker":"读不到这个网站","e.h1":"打不开这个网址","e.sub":"我们试了 {d}，没能拿到页面。常见原因：",
+ "e.r1":"网址打错了，或者网站在登录后面","e.r2":"网站在 robots.txt 里挡住了自动访问","e.r3":"网站当时刚好打不开","e.retry":"换一个网址","e.sample":"先看一个示例检查","proto.error":"网站读不到","toast.sample":"原型演示：不会真的去抓 {d}，这里始终用示例网站 answerai.pro 的数据","toast.newchat":"原型：新对话从这里开始","toast.open":"原型：这里会在新标签页打开你的页面","toast.copied":"已复制",
  "proto.btn":"原型","proto.h":"跳到某一步","proto.landing":"首页","proto.checking":"检查网站中","proto.finding":"第一个改法","proto.draft":"点「用这个改法」之后","proto.scheduled":"等待再次检查","proto.return":"回来看结果"
 }};
 var QUESTIONS = [
@@ -1707,6 +1717,12 @@ function renderDiag(){
       '<div class="card dg-in" id="dg-rows"></div><div class="dg-actions dg-in" id="dg-act"></div>';
     $("diag-body").innerHTML = h; renderDiagParts(); return;
   }
+  if(ph==="error"){
+    h = stepper(1)+'<div class="dg-head dg-in"><div class="kicker">'+t("e.kicker")+'</div><h1>'+t("e.h1")+'</h1><p class="dg-sub">'+t("e.sub",{d:esc(S.domain)})+'</p></div>'+
+      '<div class="card card-pad dg-in"><ul class="qlist"><li>'+t("e.r1")+'</li><li>'+t("e.r2")+'</li><li>'+t("e.r3")+'</li></ul></div>'+
+      '<div class="dg-actions dg-in"><button class="dg-btn" data-act="dg-retry">'+t("e.retry")+'</button><button class="btn btn-quiet" data-ex="answerai.pro">'+t("e.sample")+'</button></div>';
+    $("diag-body").innerHTML = h; return;
+  }
   if(ph==="confirm"){
     h = stepper(2)+'<div class="dg-head dg-in"><div class="kicker">'+t("c.kicker")+'</div><h1>'+t("c.h1")+'</h1><p class="dg-sub">'+t("c.sub")+'</p></div>'+
       '<dl class="card kvt dg-in"><dt>'+t("c.brand")+'</dt><dd><b>'+esc(S.undBrand)+'</b></dd><dt>'+t("c.what")+'</dt><dd>'+esc(what)+'</dd><dt>'+t("c.market")+'</dt><dd>'+t("und.marketv")+' <span class="pill">'+t("c.unsure")+'</span></dd></dl>'+
@@ -1866,6 +1882,7 @@ function issueRows(){
       h += '<div class="ws-trow'+(on?' cur':'')+'"><span class="tn'+(done?' done':'')+'">'+(st==="live"||st==="cited"?I.check:'')+'</span><div class="t"><b>'+t(SUGG[sid].t)+'</b><small>'+t(PAGES[SUGG[sid].page].name)+' · '+t("w.tl.n",{n:SUGG[sid].check})+'</small></div><span class="pill">'+t("cst."+st)+'</span><button class="btn btn-line" data-act="ws-issue" data-s="'+sid+'">'+t("w.open")+'</button></div>'; }); });
   h += '</div>';
   h += '';
+  if(!W.measuring && rows.length && doneCount()===rows.length) h += '<div class="ws-done"><b>'+t("w.done.h")+'</b><span>'+t(W.auto.on?"w.done.auto":"w.done.manual")+'</span></div>';
   if(pages>1) h += '<div class="pager"><button class="pg" data-act="ws-ipage" data-p="'+(pi-1)+'"'+(pi===0?' disabled':'')+' aria-label="'+t("w.pg.prev")+'">‹</button><span class="mono">'+(pi+1)+' / '+pages+'</span><button class="pg" data-act="ws-ipage" data-p="'+(pi+1)+'"'+(pi>=pages-1?' disabled':'')+' aria-label="'+t("w.pg.next")+'">›</button></div>';
   h += '</div>';
   var sites = W.convs.filter(function(id){ return W.meta[id].kind==="site"; });
@@ -2068,7 +2085,7 @@ function suggBlock(sid){
   h += A('<p>'+t(G.why)+(isZH()?'。':'. ')+t("w.o.lead")+'</p><div class="cc"><div class="cc-h">'+t(P.name)+' · '+t(G.t)+'</div><div class="cc-b"><div><span class="ws-lab">'+t("w.c.orig")+'</span><div class="cc-cur">'+P.cur+'</div></div><div class="ws-add-block"><span class="ws-lab" style="color:var(--accent-ink)">'+t("w.c.new")+'</span>'+(G.addQ?'<b>'+G.addQ+'</b>':'')+G.addA+'</div></div>'+
     ((g.st==="todo"||g.st==="open")?'<div class="cc-f"><button class="btn btn-primary" data-act="ws-adopt" data-s="'+sid+'">'+t("w.c.use")+'</button><button class="btn btn-quiet" data-act="ws-decline" data-s="'+sid+'">'+t("w.c.notnow")+'</button><small>'+t("w.c.hint")+'</small></div>':'')+'</div>');
   if((g.st==="todo"||g.st==="open") && PLAN==="B") h += '<div class="cb-fold">'+tog("ans:"+sid, t("w.b.evidence"))+(W.open["ans:"+sid]?'<div class="ws-box"><span class="ws-lab">'+t("w.topic.ansLab")+'</span><p><b>'+G.q+'</b></p><p class="ws-quote" style="font-size:15px">'+G.quote+'</p></div>':'')+'</div><button class="link small" data-act="ws-sheet" data-s="'+sid+'">'+t("w.b.full")+' ↗</button>';
-  if(g.st==="declined"){ h += U(t("w.c.notnowU")) + A('<p>'+t("w.c.declined2")+'</p>'); }
+  if(g.st==="declined"){ h += U(t("w.c.notnowU")) + A('<p>'+t("w.c.declined2")+'</p><div><button class="btn btn-line" data-act="ws-reopen" data-s="'+sid+'">'+t("w.c.reopen")+'</button></div>'); }
   if(g.st==="adopted"){
     h += U(t("w.c.useU")) + A('<p>'+t("w.c.savedMsg")+'</p>');
     if(!g.live){
@@ -2324,6 +2341,7 @@ function jump(k){
   if(k==="landing"){ S.user = null; resetApp(); show("landing"); return; }
   if(k==="tour"){ wsJump("tour"); return; }
   if(/^c0/.test(k)){ if(k==="c05"){ if(!S.user) S.user = {email:"you@answerai.pro"}; enterWS("measured"); } else wsJump(k); return; }
+  if(k==="error"){ resetApp(); S.domain = "myshop.example"; S.diag = {phase:"error"}; S.stepsDone = 0; show("diag"); renderDiag(); return; }
   if(k==="auth"){ S.user = null; resetApp(); S.diag = {phase:"scope"}; S.stepsDone = 3; show("diag"); renderDiag(); finishOnboarding("measured"); return; }
   if(k==="report"||k==="signup"){ if(k==="signup") S.user = null; resetApp(); S.diag = {phase:"report"}; S.metrics = {m:6,c:2}; show("diag"); renderDiag(); if(k==="signup"){ S.pending = "report"; openAuth("report"); } return; }
   if(k==="checking"){ startCheck("answerai.pro"); return; }
@@ -2367,6 +2385,8 @@ async function act(name, el){
     case "ws-open": var k = el.getAttribute("data-k"); S.ws.open[k] = !S.ws.open[k]; renderWS(); break;
     case "ws-conv": openConv(el.getAttribute("data-c")); break;
     case "ws-adopt": var sa = el.getAttribute("data-s"); S.ws.sugg[sa].st = "adopted"; S.ws.sid = sa; renderWS(); break;
+    case "dg-retry": resetApp(); show("landing"); setTimeout(function(){ var el2=$("site-url"); if(el2) el2.focus(); },60); break;
+    case "ws-reopen": var sr2 = el.getAttribute("data-s"); S.ws.sugg[sr2].st = "open"; S.ws.sid = sr2; renderWS(); toast(t("w.toast.reopened")); break;
     case "ws-decline": var sd = el.getAttribute("data-s"); S.ws.sugg[sd].st = "declined"; S.ws.sid = sd; renderWS(); break;
     case "ws-copy": var sc = el.getAttribute("data-s"), GG = SUGG[sc]; try{ await navigator.clipboard.writeText((GG.addQ?GG.addQ+"\n":"")+GG.addA); }catch(e){} S.ws.sugg[sc].copied = true; renderWS(); toast(t("toast.copied")); break;
     case "ws-open-page": toast(t("w.toast.open")); break;
@@ -2691,6 +2711,7 @@ if(location.hash==="#app") jump("finding");
   if(q.get("plan")){ PLAN = q.get("plan"); markPlan(); }
   if(q.get("demo")){ S.demo = parseInt(q.get("demo"),10); renderPreview(); }
   if(q.get("click")){ setTimeout(function(){ var el=document.querySelector(q.get("click")); if(el) el.click(); },400); }
+  if(shot==="error"){ jump("error"); return; }
   if(shot==="landing"){ if(q.get("demo")){ var lp=document.querySelector("#loop"); lp.style.paddingTop="0"; document.querySelectorAll("body > *").forEach(function(n){ if(n.id!=="loop" && !n.contains(lp) && n.tagName!=="SCRIPT" && n.tagName!=="STYLE" && n.id!=="proto"){ n.style.display="none"; } }); var p=lp.parentElement; while(p && p!==document.body){ Array.from(p.children).forEach(function(c){ if(c!==lp && !c.contains(lp)) c.style.display="none"; }); p=p.parentElement; } window.scrollTo(0,0); } return; }
   if(shot==="analyze"){ resetApp(); S.domain = "answerai.pro"; S.diag = {phase:"analyze"}; S.stepsDone = 2; show("diag"); renderDiag(); return; }
   if(shot==="confirm"||shot==="scope"){ jump(shot); return; }
