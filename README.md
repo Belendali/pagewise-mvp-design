@@ -1,31 +1,34 @@
 # pagewise · MVP design
 
-Clickable prototype for the pagewise MVP ad test: a site owner checks whether ChatGPT recommends their business, gets a ready-written fix, decides, and sees if it worked — all in one conversation.
+Clickable prototype for the pagewise MVP ad test: a site owner checks whether ChatGPT recommends their business, gets ready-written text to add, decides, pastes it into their own site, and checks again to see if it worked.
 
-**Live prototype:** https://belendali.github.io/pagewise-mvp-design/
-**Figma (section V1.0):** https://www.figma.com/design/7l0mqLoO0VOp1o4416Amgh
+- **Live prototype:** https://belendali.github.io/pagewise-mvp-design/
+- **Product spec (build from this):** [SPEC.md](SPEC.md)
+- **Figma flow board:** https://www.figma.com/design/7l0mqLoO0VOp1o4416Amgh → section **V3.0**
 
 ## Flow
 
-What the MVP tests: will site owners try an SEO/GEO tool through a **conversation + dashboard** interface?
+What the MVP tests: will site owners try an SEO/GEO tool through a **dashboard + conversation** interface?
 
-1. **Landing** — enter a website URL, "Check for free".
-2. **Onboarding (modelled on Frase)** — C02 reading the site → C03 confirm what we understood → C04 suggested questions and brands. Every step can be skipped to start chatting.
-3. **Create workspace** — Google or email link.
-4. **Workspace: dashboard + side chat (in the spirit of Notion AI / PostHog)**
-   - C05 Site overview: two key metrics, details on demand, recent chats.
-   - C06 Decide in chat: the assistant shows the exact change; *Use this* or *Not now*; or discuss only, without a draft.
-   - C07 Review original and changes (optional), with save history folded away.
-   - C08 Coming back: picks up the saved draft, stays quiet when there's nothing new.
-5. **One chat per page.** Each check's suggestions go into the chat for that page. A later check adds new messages to an existing page chat (e.g. a second suggestion for the pricing page), opens a new chat only for a page that shows up for the first time (e.g. the homepage), and doesn't repeat suggestions you skipped. Site-wide questions get their own chat (`+ New chat`).
-6. CMS publishing and the rest of the Frase feature set are marked **Coming soon**.
+1. **Landing** — enter a website URL, "Check for free". The four-step explainer is interactive and uses the same components as the product.
+2. **Three-step free check** (no sign-up): read the site → confirm what we understood → pick the questions customers ask AI → checking, 10 questions.
+3. **Create workspace** — sign up only after the first result exists (Google or email link, simulated here).
+4. **Workspace** — dashboard on the left, chat on the right:
+   - Left: checks (manual, plus an optional auto-check), two metrics (brand mentioned / site cited), every issue with its status and a progress strip, and the "coming soon" dashboards.
+   - Right: the chat for the selected issue. A dropdown at the top switches chats.
+5. **One issue = one chat.** Each thing we found is one row on the left and one chat on the right; click a row and the chat switches to it. A later check that finds something new on the same page opens a *new* issue and a *new* chat. Whole-site questions get their own chat.
+6. **Decide → paste → check again.** *Use this* saves a draft (never publishes), then three steps: copy, paste into your page, tell us it's live. The next check reports back in the same chat, with a before/after.
+7. **Change the site** from the project menu — the URL people type on the landing page is often wrong.
 
-Prototype menu → C09 shows check #2 (overview, pricing page follow-up, new homepage chat, flashcards result). Try the suggested questions in a page chat to see what stays in the chat and what moves to a new one.
+Rank tracking, site audit, content briefs, CMS publishing, multiple sites and teammates are visible but marked **Coming soon** on purpose.
 
-Use the yellow **Prototype** button to jump to any screen (C02–C08). The language switch covers English and 中文.
+## Try it
+
+Use the **Prototype** button (bottom-left inside the app) to jump to any state — first check, adopted, live, second check, the tour — and to switch between English and 中文. UI defaults to English.
 
 ## Notes
 
-- The demo uses answerai.pro as the example site. Its page copy is taken from the public site, but every check result, ChatGPT answer and suggestion is **made-up example data, not a real measurement**. Nothing is sent anywhere; sign-up is simulated.
-- Single self-contained `index.html` (fonts from Google Fonts). `opcmaster-loop.html` is the same file under its working name.
+- The demo uses answerai.pro as the example site. Page copy is from its public site, but every check result, ChatGPT answer, suggestion and metric is **made-up example data, not a real measurement**. Typing any other URL still runs the same sample, and the prototype says so.
+- Nothing is sent anywhere; sign-up is simulated.
+- Single self-contained `index.html` (fonts from Google Fonts), no build step. `opcmaster-loop.html` is the same file under its working name.
 - MVP scope: publishing is manual (copy → paste → "It's on my site"); no CMS connection yet.
