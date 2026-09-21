@@ -1624,7 +1624,7 @@ function show(view){
   if(view==="app"){ render(); } else if(view==="ws"){ renderWS(); diagLoop(); } else if(view==="diag"){ window.scrollTo(0,0); diagLoop(); } else { window.scrollTo(0,0); var L = $("landing"); L.classList.remove("play"); void L.offsetWidth; L.classList.add("play"); heroIntro(); }
   heroLoop();
 }
-function resetApp(){ var lang = S.lang, user = S.user; runId++; S = fresh(); S.lang = lang; S.user = user; cache = {}; $("thread-inner").innerHTML = ""; closeDrawer(); }
+function resetApp(){ var lang = S.lang, user = S.user, seen = S.seenTour; runId++; S = fresh(); S.lang = lang; S.user = user; S.seenTour = seen; cache = {}; $("thread-inner").innerHTML = ""; closeDrawer(); }
 
 /* ------------------------------------------------------------------ free check (linear) */
 var LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
@@ -1801,6 +1801,7 @@ function wsSide(){
 function issueRows(){
   var W = S.ws, h = '';
   var all = Object.keys(W.sugg), done = doneCount();
+  h += '<div id="ws-issues">';
   var nTodo = all.filter(function(s){ var st = suggStatus(s); return st==="todo"||st==="open"; }).length;
   var nLive = all.filter(function(s){ var st = suggStatus(s); return st==="live"||st==="cited"; }).length;
   h += '<div class="ws-sec"><h3>'+t("w.b4.queue")+'</h3></div>';
@@ -1817,7 +1818,9 @@ function issueRows(){
       var st = suggStatus(sid), done = st==="live"||st==="cited"||st==="declined", on = W.conv===("i:"+sid);
       h += '<div class="ws-trow'+(on?' cur':'')+'"><span class="tn'+(done?' done':'')+'">'+(st==="live"||st==="cited"?I.check:'')+'</span><div class="t"><b>'+t(SUGG[sid].t)+'</b><small>'+t(PAGES[SUGG[sid].page].name)+' · '+t("w.tl.n",{n:SUGG[sid].check})+'</small></div><span class="pill">'+t("cst."+st)+'</span><button class="btn btn-line" data-act="ws-issue" data-s="'+sid+'">'+t("w.open")+'</button></div>'; }); });
   h += '</div>';
+  h += '';
   if(pages>1) h += '<div class="pager"><button class="pg" data-act="ws-ipage" data-p="'+(pi-1)+'"'+(pi===0?' disabled':'')+' aria-label="'+t("w.pg.prev")+'">‹</button><span class="mono">'+(pi+1)+' / '+pages+'</span><button class="pg" data-act="ws-ipage" data-p="'+(pi+1)+'"'+(pi>=pages-1?' disabled':'')+' aria-label="'+t("w.pg.next")+'">›</button></div>';
+  h += '</div>';
   var sites = W.convs.filter(function(id){ return W.meta[id].kind==="site"; });
   if(sites.length){ h += '<div class="ws-sec"><h3>'+t("w.nav.convs")+'</h3></div><div class="ws-tasklist">';
     sites.forEach(function(id){ var m = W.meta[id];
@@ -2111,7 +2114,7 @@ function wsChat(){
 
 /* ---------- tour */
 function TOURSTEPS(){
-  if(PLAN==="B3") return [[["#tour-project"],"tour.1"],[["#ws-main"],"tour.2"],[[".ws-tasklist","#ws-chat"],"tour.3b"]];
+  if(PLAN==="B3") return [[["#tour-project"],"tour.1"],[["#ws-main"],"tour.2"],[["#ws-issues","#ws-chat"],"tour.3b"]];
   if(PLAN==="B4") return [[["#tour-project"],"tour.1"],[["#ws-main"],"tour.2"],[["#ws-side","#ws-chat"],"tour.3b"]];
   return [[["#tour-project"],"tour.1"],[[PLAN==="B2"?"#ws-board":"#ws-main .ws-in"],"tour.2"],[["#ws-chat"],"tour.3"]];
 }
@@ -2171,7 +2174,9 @@ function openConv(id){ var W = S.ws; W.cvOpen = false;
   W.page = (m && m.kind==="page") || PLAN==="A" ? "topic" : "overview"; renderWS(); $("ws-main").scrollTop = 0; }
 async function enterWS(mode){
   runId++; var id = runId;
-  S.ws = wsFresh(); S.ws.firstVisit = true; S.ws.tour = 0;
+  var again = !!S.seenTour;
+  S.ws = wsFresh(); S.ws.firstVisit = !again; S.ws.tour = again ? -1 : 0;
+  S.seenTour = true;
   if(mode==="measuring"){ S.ws.measuring = true; S.ws.asked = 0; } else applyCheck1();
   show("ws"); renderWS();
   if(mode!=="measuring") return;
