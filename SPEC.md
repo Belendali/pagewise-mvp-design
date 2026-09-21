@@ -230,13 +230,13 @@ todo ──open──▶ opened ──"采用这段"──▶ adopted ──"已
 ### 状态词（界面显示）
 | 规范状态 | 中文 | English |
 |---|---|---|
-| todo / opened | 待查看 | To review |
-| adopted（未粘贴） | 改动已备好 / 已存草稿，去粘贴 | Change ready / Draft saved · paste it |
+| todo / opened | 待办 | To do |
+| adopted（未粘贴） | 草稿已保存 · 待粘贴 | Draft saved · paste it |
 | live | 已放到网站 | On your site |
 | cited | 已被引用 ✓ | Now cited ✓ |
 | skipped | 先不改 | Skipped |
 
-> 已知小问题：原型里 `adopted` 在不同位置出现过两种说法（"改动已备好" / "已存草稿，去粘贴"），实现时统一成一种。
+> `todo` 和 `opened` 对用户是同一件事（还没决定），界面上合并显示为「待办 / To do」；"是否打开过"用未读圆点表达，不单独占一个状态词。
 
 ### 关键文案（中 / EN）
 - 落地页标题：`ChatGPT 会推荐你吗？` / `Does ChatGPT recommend your business?`
