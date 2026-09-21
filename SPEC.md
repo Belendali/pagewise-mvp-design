@@ -4,7 +4,7 @@
 >
 > - 可点原型：https://belendali.github.io/pagewise-mvp-design/
 > - 代码（单文件）：`index.html`
-> - Figma 流程板：https://www.figma.com/design/7l0mqLoO0VOp1o4416Amgh/ → section **V3.0**
+> - Figma：https://www.figma.com/design/7l0mqLoO0VOp1o4416Amgh/ → **V3.0** 是流程板（17 张截图，看走查用），**V3.1** 是原生设计稿（本地色彩/文字样式 + 组件 + 4 张工作区页面，可编辑、可标注）
 > - 原型里的数据（Answer.AI 及其页面、问题、建议、指标）**全部是编的**，只用于演示。
 
 ---

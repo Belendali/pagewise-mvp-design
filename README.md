@@ -4,7 +4,7 @@ Clickable prototype for the pagewise MVP ad test: a site owner checks whether Ch
 
 - **Live prototype:** https://belendali.github.io/pagewise-mvp-design/
 - **Product spec (build from this):** [SPEC.md](SPEC.md)
-- **Figma flow board:** https://www.figma.com/design/7l0mqLoO0VOp1o4416Amgh → section **V3.0**
+- **Figma flow board:** https://www.figma.com/design/7l0mqLoO0VOp1o4416Amgh → **V3.0** (flow board) and **V3.1** (native design + components)
 
 ## Flow
 
