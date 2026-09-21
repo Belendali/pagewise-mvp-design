@@ -667,6 +667,26 @@ body.plan-b3 .cv-switch{min-width:0;max-width:100%}
 .ws-chat-f .row{display:flex;justify-content:flex-end}
 
 .ws-in > .link{align-self:flex-start}
+.app-skin{background:#111110;border:1px solid #232320;border-radius:14px;overflow:hidden;color:var(--ink);display:flex;flex-direction:column}
+.app-skin .cc,.app-skin .ws-box{border-radius:6px;background:var(--glass-strong);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+.app-skin .btn-primary{border-radius:3px;background:#DAD7D0;color:#111;font-family:var(--mono);font-weight:500;box-shadow:inset 1px 1px 0 #FFFFFF,inset -1px -1px 0 #8C8981,0 1px 0 #000,0 0 0 1px #000}
+.app-skin .btn-line{border-radius:3px;background:transparent;border-color:#34332F;font-family:var(--mono)}
+.app-skin .btn-quiet{font-family:var(--mono);font-size:13px}
+.app-skin .pill{border-radius:3px;background:#1D1D1C}
+.dm-h{display:flex;align-items:baseline;gap:8px;padding:13px 16px;border-bottom:1px solid var(--glass-line)}
+.dm-h b{font-size:14px;font-weight:600}
+.dm-h small{font-size:12px;color:var(--ink-3);margin-left:auto;font-family:var(--mono)}
+.dm-b{padding:16px;display:flex;flex-direction:column;gap:13px;min-height:330px}
+.dm-b .cb-a p{margin:0;line-height:1.55}
+.dm-f{margin-top:auto;padding:11px 16px;border-top:1px solid var(--glass-line);display:flex;gap:8px;align-items:center}
+.dm-f span{font-size:12px;color:var(--ink-3)}
+.dm-dots{display:flex;gap:5px;margin-left:auto}
+.dm-dots i{width:6px;height:6px;border-radius:50%;background:var(--line-2)}
+.dm-dots i.on{background:var(--accent)}
+.steps-list li{cursor:pointer}
+.steps-list li.on h3{color:var(--ink)}
+.steps-list li.on .step-n{background:var(--accent);color:#1A1509;border-color:transparent}
+.steps-list li:not(.on) h3,.steps-list li:not(.on) p{opacity:.6}
 .pager{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 0 2px;font-size:12px;color:var(--ink-3)}
 .pager .pg{width:28px;height:28px;border-radius:8px;border:1px solid var(--glass-line);color:var(--ink-2);font-size:15px;line-height:1}
 .pager .pg:hover:not([disabled]){color:var(--ink);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
@@ -802,7 +822,7 @@ body.inner .bd-row.on{background:#1B1B1A;border-color:transparent;box-shadow:ins
 }
 
 /* ================= INNER PAGES · warm noir ================= */
-#diag,#ws,body.inner .auth,body.inner .toast,body.inner .proto-menu,body.inner .scrim,body.inner .drawer{
+#diag,#ws,.app-skin,body.inner .auth,body.inner .toast,body.inner .proto-menu,body.inner .scrim,body.inner .drawer{
   --bg:#0F0F0F; --surface:#161616; --surface-2:#1D1D1C; --sunken:#131313;
   --ink:#F1EEE8; --ink-2:#A9A59D; --ink-3:#6F6B64; --line:#262625; --line-2:#34332F;
   --primary:#DAD7D0; --primary-hover:#E8E6E1; --on-primary:#111111;
@@ -1094,15 +1114,15 @@ body.ws-mode .plan-switch{display:inline-flex;padding:3px;border-radius:999px;ba
         <div class="kicker" data-i18n="loop.kicker"></div>
         <h2 class="h2" data-i18n="loop.h2"></h2>
         <ol class="steps-list">
-          <li><span class="step-n">1</span><h3 data-i18n="loop.1t"></h3><p data-i18n="loop.1d"></p></li>
-          <li><span class="step-n">2</span><h3 data-i18n="loop.2t"></h3><p data-i18n="loop.2d"></p></li>
-          <li><span class="step-n">3</span><h3 data-i18n="loop.3t"></h3><p data-i18n="loop.3d"></p></li>
-          <li><span class="step-n">4</span><h3 data-i18n="loop.4t"></h3><p data-i18n="loop.4d"></p></li>
+          <li data-act="demo" data-n="1"><span class="step-n">1</span><h3 data-i18n="loop.1t"></h3><p data-i18n="loop.1d"></p></li>
+          <li data-act="demo" data-n="2"><span class="step-n">2</span><h3 data-i18n="loop.2t"></h3><p data-i18n="loop.2d"></p></li>
+          <li data-act="demo" data-n="3"><span class="step-n">3</span><h3 data-i18n="loop.3t"></h3><p data-i18n="loop.3d"></p></li>
+          <li data-act="demo" data-n="4"><span class="step-n">4</span><h3 data-i18n="loop.4t"></h3><p data-i18n="loop.4d"></p></li>
         </ol>
       </div>
       <div class="preview">
         <div class="preview-label"><span data-i18n="preview.label"></span><span>bluecrumb-bakery.example</span></div>
-        <div id="preview-card"></div>
+        <div id="preview-card" class="app-skin"></div>
       </div>
     </div>
   </section>
@@ -1255,7 +1275,20 @@ en:{
  "loop.3t":"You decide","loop.3d":"Use it or skip it. Nothing changes without you.",
  "loop.4t":"Check again","loop.4d":"We ask ChatGPT again and show what changed.",
  "loop.back":"Then we move on to the next gap.",
- "preview.label":"What a fix looks like","final.h2":"Find out what ChatGPT says about your business.","footer.note":"Prototype · example data",
+ "preview.label":"What a fix looks like",
+ "dm.t":"Gluten-free cakes","dm.url":"bluecrumb-bakery.example","dm.page":"Cakes page","dm.fix":"Answer the gluten-free question",
+ "dm.cur":"ON YOUR PAGE","dm.curText":"Custom cakes for birthdays, weddings and every celebration in between. Order online or visit our shop on NE Alberta St.",
+ "dm.add":"NEW","dm.addQ":"Do you make gluten-free cakes?","dm.addA":"Yes. Any of our birthday cakes can be made gluten-free with two days' notice. Choose “gluten-free” when you order online, or call the shop.",
+ "dm.use":"Use this","dm.skip":"Not now","dm.hint":"Saves to draft · doesn't publish",
+ "dm.s1a":"First check is done. I asked ChatGPT 10 questions your customers ask: 6 answers mention you, and 2 cite your site.",
+ "dm.s1b":"ChatGPT doesn't mention you for “Where can I order a gluten-free birthday cake in Portland?” — it named Sugar Loaf, Petite Crumb and Maple & Rye. Your cakes page never says you make gluten-free cakes.",
+ "dm.s2a":"I've written something you could add to your cakes page. You decide whether to use it:",
+ "dm.s3a":"Saved to draft. Your website hasn't changed.","dm.s3h":"Put it on your site",
+ "dm.s3_1":"Copy the text","dm.s3_2":"Paste it into your cakes page","dm.s3_3":"Tell me when it's live",
+ "dm.copy":"Copy","dm.openpage":"Open page","dm.done":"It's on my site","dm.liveHint":"Live on your site",
+ "dm.s4a":"Check #2 is done. ChatGPT now names you for that question and cites your cakes page:",
+ "dm.before":"Sep 16","dm.beforev":"Not mentioned","dm.after":"Sep 25","dm.afterv":"Mentioned · cited",
+ "dm.s4b":"Two of the ten questions changed. I'll keep watching the rest.","final.h2":"Find out what ChatGPT says about your business.","footer.note":"Prototype · example data",
  "side.new":"New chat","side.chats":"Chats","side.chat1":"First check","side.settings":"Site & questions","side.back":"Back to homepage",
  "st.checking":"Checking your site…","st.proposed":"1 fix waiting for you","st.draft":"Draft saved · not on your site yet","st.verifying":"Looking at your page…","st.scheduled":"Checking again Sep 23","st.rechecking":"Checking again…","st.rechecked":"Checked again · 1 more link","st.dismissed":"Skipped",
  "m.mentioned":"ChatGPT mentions you","m.cited":"ChatGPT links to your site","m.meta":"{date} · 10 customer questions · ChatGPT (US, English)","m.first":"First check","m.since":"since Sep 16","m.details":"See questions","m.sample":"Example data","m.measuring":"Asking ChatGPT · {n}/10",
@@ -1326,7 +1359,20 @@ zh:{
  "loop.3t":"你来决定","loop.3d":"用或跳过，没有你确认什么都不会变。",
  "loop.4t":"再查一次","loop.4d":"再问一次 ChatGPT，看看有什么变化。",
  "loop.back":"然后继续看下一个缺口。",
- "preview.label":"改法长这样","final.h2":"看看 ChatGPT 怎么介绍你的业务。","footer.note":"原型 · 示例数据",
+ "preview.label":"改法长这样",
+ "dm.t":"无麸质蛋糕","dm.url":"bluecrumb-bakery.example","dm.page":"蛋糕页","dm.fix":"回答无麸质这个问题",
+ "dm.cur":"网站原文","dm.curText":"生日、婚礼和各种场合的定制蛋糕。可以在线下单，也欢迎来 NE Alberta 街的店里看看。",
+ "dm.add":"新增","dm.addQ":"你们做无麸质蛋糕吗？","dm.addA":"做。所有生日蛋糕都可以做成无麸质的，提前两天预订即可。在线下单时选「无麸质」，或者直接打电话到店里。",
+ "dm.use":"采用这段","dm.skip":"先不改","dm.hint":"保存到草稿 · 不发布",
+ "dm.s1a":"第一次检查完成。我用客户常问的 10 个问题问了 ChatGPT：6 个回答提到了你，2 个引用了你的网站。",
+ "dm.s1b":"问到「波特兰哪里能订无麸质生日蛋糕」时，ChatGPT 没有提到你，它说的是 Sugar Loaf、Petite Crumb 和 Maple & Rye。你的蛋糕页上没有一句写着你们做无麸质蛋糕。",
+ "dm.s2a":"我写好了一段可以加到蛋糕页上的内容，你决定用不用：",
+ "dm.s3a":"已经存成草稿，你的网站还没有变。","dm.s3h":"放到你的网站上",
+ "dm.s3_1":"复制这段文字","dm.s3_2":"粘贴到蛋糕页","dm.s3_3":"放好了告诉我",
+ "dm.copy":"复制","dm.openpage":"打开页面","dm.done":"已放到网站","dm.liveHint":"已在你的网站上",
+ "dm.s4a":"第 2 次检查完成。同样这个问题，ChatGPT 现在会提到你，并且引用了你的蛋糕页：",
+ "dm.before":"9 月 16 日","dm.beforev":"没提到","dm.afterv":"提到 · 并引用","dm.after":"9 月 25 日",
+ "dm.s4b":"10 个问题里有 2 个发生了变化，其余的我继续盯着。","final.h2":"看看 ChatGPT 怎么介绍你的业务。","footer.note":"原型 · 示例数据",
  "side.new":"新对话","side.chats":"对话","side.chat1":"首次检查","side.settings":"网站与问题","side.back":"返回首页",
  "st.checking":"正在检查网站…","st.proposed":"有 1 个改法等你决定","st.draft":"草稿已保存 · 还没放到网站上","st.verifying":"正在查看页面…","st.scheduled":"9 月 23 日再检查","st.rechecking":"正在再次检查…","st.rechecked":"已再次检查 · 多了 1 次链接","st.dismissed":"已跳过",
  "m.mentioned":"ChatGPT 提到你","m.cited":"ChatGPT 链接到你的网站","m.meta":"{date} · 10 个客户问题 · ChatGPT（美国，英语）","m.first":"首次检查","m.since":"较 9 月 16 日","m.details":"查看问题","m.sample":"示例数据","m.measuring":"正在问 ChatGPT · {n}/10",
@@ -2333,6 +2379,7 @@ async function act(name, el){
       Wp.sid = ps; Wp.scrollPv = true; if(el.getAttribute("data-from")==="center") Wp.chatTo = ps; else Wp.keepScroll = true;
       if(PLAN!=="B" && Wp.page==="overview" && Wp.conv) Wp.page = "topic"; renderWS(); break;
     case "ws-issue": openIssue(el.getAttribute("data-s")); break;
+    case "demo": S.demo = parseInt(el.getAttribute("data-n"),10)||1; renderPreview(); break;
     case "ws-ipage": S.ws.issPage = Math.max(0, parseInt(el.getAttribute("data-p"),10)||0); renderWS(); break;
     case "ws-dash": S.ws.dash = el.getAttribute("data-d") || null; renderWS(); $("ws-main").scrollTop = 0; break;
     case "ws-proj": S.ws.projOpen = !S.ws.projOpen; S.ws.projEdit = false; renderWS(); break;
@@ -2402,7 +2449,39 @@ function splitWords(h){
   });
   h.textContent = ""; h.appendChild(out);
 }
-function renderPreview(){ if(!$("preview-card")) return; var keep = S.fs; S.fs = "proposed"; $("preview-card").innerHTML = rFinding(true); S.fs = keep; }
+function renderPreview(){
+  var el = $("preview-card"); if(!el) return;
+  var n = S.demo || 2, h = '';
+  h += '<div class="dm-h"><b>'+t("dm.t")+'</b><small>'+t("dm.page")+'</small></div><div class="dm-b">';
+  var card = function(withAdd, withFoot, state){
+    var x = '<div class="cc"><div class="cc-h">'+t("dm.page")+' · '+t("dm.fix")+'</div><div class="cc-b">'+
+      '<div><span class="ws-lab">'+t("dm.cur")+'</span><p class="cc-cur">'+t("dm.curText")+'</p></div>';
+    if(withAdd) x += '<div class="ws-add-block"><span class="ws-lab">'+t("dm.add")+'</span><b>'+t("dm.addQ")+'</b><p>'+t("dm.addA")+'</p></div>';
+    x += '</div>';
+    if(withFoot==="decide") x += '<div class="cc-f"><button class="btn btn-primary" type="button" data-act="demo" data-n="3">'+t("dm.use")+'</button><button class="btn btn-quiet" type="button" data-act="demo" data-n="1">'+t("dm.skip")+'</button><small>'+t("dm.hint")+'</small></div>';
+    if(withFoot==="live") x += '<div class="cc-f"><span class="pill">'+t("cst.live")+'</span><small>'+t("dm.liveHint")+'</small></div>';
+    return x+'</div>';
+  };
+  if(n===1){
+    h += A('<p>'+t("dm.s1a")+'</p>');
+    h += A('<p>'+t("dm.s1b")+'</p>'+card(false, null));
+  } else if(n===2){
+    h += A('<p>'+t("dm.s2a")+'</p>'+card(true, "decide"));
+  } else if(n===3){
+    h += U(t("dm.use")) + A('<p>'+t("dm.s3a")+'</p>'+
+      '<div class="ws-box" style="width:100%"><b style="font-weight:600;display:block;margin-bottom:8px">'+t("dm.s3h")+'</b><ol class="todo">'+
+      '<li><span class="n">1</span><span>'+t("dm.s3_1")+'</span><button class="btn btn-line" style="height:30px" type="button" data-act="demo" data-n="3">'+t("dm.copy")+'</button></li>'+
+      '<li><span class="n">2</span><span>'+t("dm.s3_2")+'</span><button class="btn btn-line" style="height:30px" type="button" data-act="demo" data-n="3">'+t("dm.openpage")+'</button></li>'+
+      '<li><span class="n">3</span><span>'+t("dm.s3_3")+'</span><button class="btn btn-primary" style="height:30px" type="button" data-act="demo" data-n="4">'+t("dm.done")+'</button></li></ol></div>');
+  } else {
+    h += A('<p>'+t("dm.s4a")+'</p>'+
+      '<div class="cmp" style="width:100%"><div><small>'+t("dm.before")+'</small><b>'+t("dm.beforev")+'</b></div><span class="arr">'+I.arrow+'</span><div class="after"><small>'+t("dm.after")+'</small><b>'+t("dm.afterv")+'</b></div></div>');
+    h += A('<p>'+t("dm.s4b")+'</p>');
+  }
+  h += '</div><div class="dm-f"><span>'+t("loop."+n+"t")+'</span><span class="dm-dots">'+[1,2,3,4].map(function(i){ return '<i class="'+(i===n?'on':'')+'"></i>'; }).join("")+'</span></div>';
+  el.innerHTML = h;
+  document.querySelectorAll(".steps-list li").forEach(function(li,i){ li.classList.toggle("on", i+1===n); });
+}
 
 /* ------------------------------------------------------------------ events */
 function saveRename(input, keep){
