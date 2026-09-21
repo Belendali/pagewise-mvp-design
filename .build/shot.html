@@ -2723,6 +2723,9 @@ if(location.hash==="#app") jump("finding");
   if(q.get("cv")){ S.ws.cvOpen = true; renderWS(); }
   if(q.get("pm")){ S.ws.projOpen = true; if(q.get("pm")==="edit") S.ws.projEdit = true; renderWS(); }
   if(q.get("dash")){ S.ws.dash = q.get("dash"); renderWS(); }
+
+  if(q.get("alldone")){ var W=S.ws; Object.keys(W.sugg).forEach(function(k){ W.sugg[k].st="adopted"; W.sugg[k].live=true; }); W.conv=null; W.page="overview"; renderWS(); }
+  if(q.get("skipped")){ var W2=S.ws; W2.sugg.faq1.st="declined"; openIssue("faq1"); }
 })();
 })();
 </script>
