@@ -567,10 +567,9 @@ body.in-app .proto{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 :root:not([data-theme="dark"]) .side .logo-mark{filter:invert(1) brightness(.35)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .side .logo-mark{filter:none}}
 /* ================= WORKSPACE (conversation + dashboard) ================= */
-body.ws-mode .proto{top:calc(12px + env(safe-area-inset-top,0px));bottom:auto;right:500px}
-body.ws-mode .proto-menu{top:44px;bottom:auto}
-@media (max-width:1180px){body.ws-mode .proto{right:436px}}
-@media (max-width:900px){body.ws-mode .proto{right:16px}}
+body.ws-mode .proto{top:auto;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:14px;right:auto}
+body.ws-mode .proto-menu{bottom:44px;top:auto;left:0;right:auto}
+@media (max-width:900px){body.ws-mode .proto{left:16px}}
 .ws{display:grid;grid-template-columns:240px minmax(0,1fr) 480px;height:100%;position:relative;isolation:isolate;background:var(--bg);color:var(--ink)}
 .ws::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(38% 46% at 6% 4%,var(--amb1),transparent 70%),radial-gradient(40% 50% at 98% 100%,var(--amb2),transparent 70%),radial-gradient(30% 36% at 60% 10%,var(--amb3),transparent 70%)}
@@ -1100,8 +1099,7 @@ body.ws-mode .plan-switch{display:inline-flex;padding:3px;border-radius:999px;ba
         </div>
         <div class="ask-examples">
           <span data-i18n="hero.try"></span>
-          <button type="button" class="chip-ex" data-ex="bluecrumb-bakery.example">bluecrumb-bakery.example</button>
-          <button type="button" class="chip-ex" data-ex="harbor-dental.example">harbor-dental.example</button>
+          <button type="button" class="chip-ex" data-ex="answerai.pro">answerai.pro</button>
         </div>
       </form>
     </div>
@@ -1325,7 +1323,7 @@ en:{
  "dr.meta":"Question 4 of 10 · ChatGPT (US, English)","dr.sources":"Websites ChatGPT linked to","dr.absent":"This answer doesn't mention Answer.AI or link to your website.","dr.present":"This answer mentions Answer.AI and links to your meetings page.",
  "dr.pagestate.proposed":"Suggested · not on your site yet","dr.pagestate.live":"Live on your page",
  "dr.pos":"When ChatGPT mentions you, you're usually listed 3rd of 8","dr.q":"Question","dr.m":"Mentions you","dr.c":"Links to you","dr.brands":"Competitors we compare you with","dr.edit":"Want different questions or competitors? Just tell me in the chat.",
- "toast.sites":"Prototype: one website only","toast.newchat":"Prototype: new chats start here","toast.open":"Prototype: this opens your page in a new tab","toast.copied":"Copied",
+ "toast.sites":"Prototype: one website only","toast.sample":"Prototype: {d} is not crawled here — this demo always checks the sample site answerai.pro","toast.newchat":"Prototype: new chats start here","toast.open":"Prototype: this opens your page in a new tab","toast.copied":"Copied",
  "proto.btn":"Prototype","proto.h":"Jump to a step","proto.landing":"Homepage","proto.checking":"Checking the site","proto.finding":"First fix","proto.draft":"After “Use this fix”","proto.scheduled":"Waiting to check again","proto.return":"Coming back · results"
 },
 zh:{
@@ -1409,7 +1407,7 @@ zh:{
  "dr.meta":"第 4 / 10 个问题 · ChatGPT（美国，英语）","dr.sources":"ChatGPT 链接到的网站","dr.absent":"这个回答没有提到 Answer.AI，也没有链接到你的网站。","dr.present":"这个回答提到了 Answer.AI，并链接到你的会议页面。",
  "dr.pagestate.proposed":"建议内容 · 还没放到网站上","dr.pagestate.live":"已在你的页面上",
  "dr.pos":"ChatGPT 提到你时，你通常排在 8 个品牌里的第 3 位","dr.q":"问题","dr.m":"提到你","dr.c":"链接到你","dr.brands":"和你一起比较的竞品","dr.edit":"想换问题或竞品？直接在对话里告诉我。",
- "toast.sites":"原型：只有一个网站","toast.newchat":"原型：新对话从这里开始","toast.open":"原型：这里会在新标签页打开你的页面","toast.copied":"已复制",
+ "toast.sites":"原型：只有一个网站","toast.sample":"原型演示：不会真的去抓 {d}，这里始终用示例网站 answerai.pro 的数据","toast.newchat":"原型：新对话从这里开始","toast.open":"原型：这里会在新标签页打开你的页面","toast.copied":"已复制",
  "proto.btn":"原型","proto.h":"跳到某一步","proto.landing":"首页","proto.checking":"检查网站中","proto.finding":"第一个改法","proto.draft":"点「用这个改法」之后","proto.scheduled":"等待再次检查","proto.return":"回来看结果"
 }};
 var QUESTIONS = [
@@ -1721,7 +1719,7 @@ function renderDiag(){
     $("diag-body").innerHTML = h; return;
   }
   if(ph==="scope"||ph==="running"){
-    var qs = [QUESTIONS[0][0], Q4, QUESTIONS[6][0]].map(function(q){ return '<li>'+q+'</li>'; }).join("");
+    var qs = [QUESTIONS[0][0], QUESTIONS[3][0], QUESTIONS[6][0]].map(function(q){ return '<li>'+q+'</li>'; }).join("");
     var allq = QUESTIONS.map(function(q){ return '<li>'+q[0]+'</li>'; }).join("");
     var brands = ['<span class="you">Answer.AI '+t("s.you")+'</span>',"Photomath","Quizlet","Gauth"].map(function(b){ return b.charAt(0)==="<"?b:'<span>'+b+'</span>'; }).join("");
     h = stepper(3)+'<div class="dg-head dg-in"><div class="kicker">'+t("s.kicker")+'</div><h1>'+t("s.h1")+'</h1><p class="dg-sub">'+t("s.sub")+'</p></div>'+
@@ -1740,7 +1738,10 @@ function renderDiag(){
 }
 function goPhase(ph){ S.diag.phase = ph; window.scrollTo(0,0); renderDiag(); }
 async function startCheck(domain){
-  resetApp(); var id = runId; S.domain = domain || "answerai.pro";
+  resetApp(); var id = runId;
+  var typed = (domain||"").trim();
+  S.domain = "answerai.pro";
+  if(typed && typed!=="answerai.pro") toast(t("toast.sample",{d:typed}));
   S.diag = {phase:"analyze"}; S.stepsDone = 0; S.asked = 0;
   show("diag"); renderDiag();
   try{
@@ -2166,6 +2167,8 @@ function TOURSTEPS(){
 }
 function renderTour(){
   var el = $("tour"), W = S.ws;
+  if(W && W.tour===2 && S.view==="ws" && PLAN==="B3"){ var iss = document.querySelector("#ws-issues");
+    if(iss){ var rr = iss.getBoundingClientRect(); if(rr.bottom > window.innerHeight - 20 || rr.top < 60){ iss.scrollIntoView({block:"center"}); setTimeout(renderTour, 60); } } }
   if(!W || W.tour<0 || S.view!=="ws"){ el.hidden = true; return; }
   var step = TOURSTEPS()[W.tour], pad = 8, vw = window.innerWidth, vh = window.innerHeight;
   var holes = step[0].map(function(sel){ var el2 = document.querySelector(sel); if(!el2) return null; var r = el2.getBoundingClientRect();
