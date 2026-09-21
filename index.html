@@ -1114,10 +1114,10 @@ body.ws-mode .plan-switch{display:inline-flex;padding:3px;border-radius:999px;ba
         <div class="kicker" data-i18n="loop.kicker"></div>
         <h2 class="h2" data-i18n="loop.h2"></h2>
         <ol class="steps-list">
-          <li data-act="demo" data-n="1"><span class="step-n">1</span><h3 data-i18n="loop.1t"></h3><p data-i18n="loop.1d"></p></li>
-          <li data-act="demo" data-n="2"><span class="step-n">2</span><h3 data-i18n="loop.2t"></h3><p data-i18n="loop.2d"></p></li>
-          <li data-act="demo" data-n="3"><span class="step-n">3</span><h3 data-i18n="loop.3t"></h3><p data-i18n="loop.3d"></p></li>
-          <li data-act="demo" data-n="4"><span class="step-n">4</span><h3 data-i18n="loop.4t"></h3><p data-i18n="loop.4d"></p></li>
+          <li data-act="demo-step" data-n="1"><span class="step-n">1</span><h3 data-i18n="loop.1t"></h3><p data-i18n="loop.1d"></p></li>
+          <li data-act="demo-step" data-n="2"><span class="step-n">2</span><h3 data-i18n="loop.2t"></h3><p data-i18n="loop.2d"></p></li>
+          <li data-act="demo-step" data-n="3"><span class="step-n">3</span><h3 data-i18n="loop.3t"></h3><p data-i18n="loop.3d"></p></li>
+          <li data-act="demo-step" data-n="4"><span class="step-n">4</span><h3 data-i18n="loop.4t"></h3><p data-i18n="loop.4d"></p></li>
         </ol>
       </div>
       <div class="preview">
@@ -2379,7 +2379,7 @@ async function act(name, el){
       Wp.sid = ps; Wp.scrollPv = true; if(el.getAttribute("data-from")==="center") Wp.chatTo = ps; else Wp.keepScroll = true;
       if(PLAN!=="B" && Wp.page==="overview" && Wp.conv) Wp.page = "topic"; renderWS(); break;
     case "ws-issue": openIssue(el.getAttribute("data-s")); break;
-    case "demo": S.demo = parseInt(el.getAttribute("data-n"),10)||1; renderPreview(); break;
+    case "demo-step": S.demo = parseInt(el.getAttribute("data-n"),10)||1; renderPreview(); break;
     case "ws-ipage": S.ws.issPage = Math.max(0, parseInt(el.getAttribute("data-p"),10)||0); renderWS(); break;
     case "ws-dash": S.ws.dash = el.getAttribute("data-d") || null; renderWS(); $("ws-main").scrollTop = 0; break;
     case "ws-proj": S.ws.projOpen = !S.ws.projOpen; S.ws.projEdit = false; renderWS(); break;
@@ -2458,7 +2458,7 @@ function renderPreview(){
       '<div><span class="ws-lab">'+t("dm.cur")+'</span><p class="cc-cur">'+t("dm.curText")+'</p></div>';
     if(withAdd) x += '<div class="ws-add-block"><span class="ws-lab">'+t("dm.add")+'</span><b>'+t("dm.addQ")+'</b><p>'+t("dm.addA")+'</p></div>';
     x += '</div>';
-    if(withFoot==="decide") x += '<div class="cc-f"><button class="btn btn-primary" type="button" data-act="demo" data-n="3">'+t("dm.use")+'</button><button class="btn btn-quiet" type="button" data-act="demo" data-n="1">'+t("dm.skip")+'</button><small>'+t("dm.hint")+'</small></div>';
+    if(withFoot==="decide") x += '<div class="cc-f"><button class="btn btn-primary" type="button" data-act="demo-step" data-n="3">'+t("dm.use")+'</button><button class="btn btn-quiet" type="button" data-act="demo-step" data-n="1">'+t("dm.skip")+'</button><small>'+t("dm.hint")+'</small></div>';
     if(withFoot==="live") x += '<div class="cc-f"><span class="pill">'+t("cst.live")+'</span><small>'+t("dm.liveHint")+'</small></div>';
     return x+'</div>';
   };
@@ -2470,9 +2470,9 @@ function renderPreview(){
   } else if(n===3){
     h += U(t("dm.use")) + A('<p>'+t("dm.s3a")+'</p>'+
       '<div class="ws-box" style="width:100%"><b style="font-weight:600;display:block;margin-bottom:8px">'+t("dm.s3h")+'</b><ol class="todo">'+
-      '<li><span class="n">1</span><span>'+t("dm.s3_1")+'</span><button class="btn btn-line" style="height:30px" type="button" data-act="demo" data-n="3">'+t("dm.copy")+'</button></li>'+
-      '<li><span class="n">2</span><span>'+t("dm.s3_2")+'</span><button class="btn btn-line" style="height:30px" type="button" data-act="demo" data-n="3">'+t("dm.openpage")+'</button></li>'+
-      '<li><span class="n">3</span><span>'+t("dm.s3_3")+'</span><button class="btn btn-primary" style="height:30px" type="button" data-act="demo" data-n="4">'+t("dm.done")+'</button></li></ol></div>');
+      '<li><span class="n">1</span><span>'+t("dm.s3_1")+'</span><button class="btn btn-line" style="height:30px" type="button" data-act="demo-step" data-n="3">'+t("dm.copy")+'</button></li>'+
+      '<li><span class="n">2</span><span>'+t("dm.s3_2")+'</span><button class="btn btn-line" style="height:30px" type="button" data-act="demo-step" data-n="3">'+t("dm.openpage")+'</button></li>'+
+      '<li><span class="n">3</span><span>'+t("dm.s3_3")+'</span><button class="btn btn-primary" style="height:30px" type="button" data-act="demo-step" data-n="4">'+t("dm.done")+'</button></li></ol></div>');
   } else {
     h += A('<p>'+t("dm.s4a")+'</p>'+
       '<div class="cmp" style="width:100%"><div><small>'+t("dm.before")+'</small><b>'+t("dm.beforev")+'</b></div><span class="arr">'+I.arrow+'</span><div class="after"><small>'+t("dm.after")+'</small><b>'+t("dm.afterv")+'</b></div></div>');
